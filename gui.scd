@@ -2,7 +2,6 @@
 // specify directory with samples
 var currentDir = PathName(thisProcess.nowExecutingPath).pathOnly;
 var sampleDir = currentDir +/+ "soundfiles";
-// var sampleDir = "/run/media/deko/Vayu/Music/MOON2/guitar_piece/voices/samples";
 var confFile = currentDir +/+ "conf.scd";
 var walk, walkWait=5;
 var win, palette, panel, windowHeight, windowWidth,
@@ -560,14 +559,14 @@ if (this.executeFile(currentDir +/+ "synthdef.scd").isNil.not) {
 };
 
 // GUI skin
-GUI.skin.plot.gridLinePattern = FloatArray[1, 0];
-GUI.skin.plot.fontColor = Color(0.5, 1, 0);
-GUI.skin.plot.gridColorX = Color.yellow(0.5);
-GUI.skin.plot.gridColorY = Color.yellow(0.5);
-GUI.skin.plot.background = Color.black;
-GUI.skin.plot.plotColor = (10..0).normalize(0.1, 1).collect { |i| Color.rand(i) };
-GUI.skin.plot.labelX = "X";
-GUI.skin.plot.labelY = "Y";
+GUI.skins.plot.gridLinePattern = FloatArray[1, 0];
+GUI.skins.plot.fontColor = Color(0.5, 1, 0);
+GUI.skins.plot.gridColorX = Color.yellow(0.5);
+GUI.skins.plot.gridColorY = Color.yellow(0.5);
+GUI.skins.plot.background = Color.black;
+GUI.skins.plot.plotColor = (10..0).normalize(0.1, 1).collect { |i| Color.rand(i) };
+GUI.skins.plot.labelX = "X";
+GUI.skins.plot.labelY = "Y";
 
 // main effect plate config
 "-> Loading conf...".postln;
@@ -601,10 +600,10 @@ conf.do { |unit|
 
 // make the window
 windowHeight = 650;
-windowWidth = Window.screenBounds.width;
+windowWidth = 1600; //Window.screenBounds.width;
 win = Window("control panel",
 	Rect(0, Window.screenBounds.height-windowHeight, windowWidth, windowHeight),
-	// resizable:false, border:false
+	resizable:false
 );
 win.front; // make window visible and front window.
 win.view.decorator = FlowLayout(win.view.bounds);
