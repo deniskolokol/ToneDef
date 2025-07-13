@@ -1,0 +1,99 @@
+#N canvas 765 136 634 624 10;
+#X obj 440 -84 loadbang;
+#X msg 440 -61 1;
+#X obj 474 -61 switch~ 64 1 1;
+#X obj 196 286 init 0;
+#X obj 110 318 togsource~;
+#X obj 148 293 *~ 1;
+#X obj 37 -67 inlet~;
+#X obj 60 433 outlet~;
+#X obj 257 -77 inlet;
+#X text 200 321 effect off/on;
+#X obj 108 80 DS1-bjt_stage~ 100;
+#X obj 71 235 DS1-tone_stage~;
+#X obj 71 258 DS1-bjt_stage~ 1;
+#X obj 110 369 hip~ 3;
+#X obj 91 16 hip~ 3;
+#X obj 71 185 *~ 16;
+#X obj 91 39 hip~ 3;
+#X obj 110 345 hip~ 3;
+#X obj 108 105 DS1-opamp_gain~;
+#X obj 71 159 lop~ 7234;
+#X text 242 383 a humble try to implement Boss DS-1 disto pedal following
+"Simplified \, physically-informed models of distorsion and overdrive
+guitar effects pedals" article by D.T.Yeh \, J.S. Abel and J.O. Smith.
+(http://ccrma.stanford.edu/~dtyeh/papers/pubs.html"). Development discussion
+at "http://puredata.hurleur.com/sujet-5775-better-sounding-guitar-distorsion-beyond-clip-tanh".
+;
+#X text 179 -43 list: Dist tone Level bypass;
+#X obj 257 -20 unpack f f f f;
+#N canvas 92 60 501 373 upsample~ 0;
+#X obj 44 25 inlet~;
+#X obj 45 297 outlet~;
+#X obj 242 54 samplerate~;
+#X obj 242 26 loadbang;
+#X floatatom 164 85 10 0 0 0 - - -;
+#X obj 64 115 lp10_cheb~ 18000;
+#X obj 65 216 lp10_cheb~ 18000;
+#X obj 65 158 tanh~;
+#X obj 353 59 switch~ 64 1 16;
+#X obj 353 26 inlet;
+#X obj 242 98 sel 705600 768000;
+#X msg 242 128 18000;
+#X floatatom 279 176 5 0 0 0 - - -;
+#X msg 291 128 19590;
+#X text 200 204 choose antialias cutoff freq. :;
+#X text 193 224 18khz if SR=44.1khz \, 19.59khz if SR=48kHz;
+#X connect 0 0 5 0;
+#X connect 2 0 4 0;
+#X connect 2 0 10 0;
+#X connect 3 0 2 0;
+#X connect 5 0 7 0;
+#X connect 6 0 1 0;
+#X connect 7 0 6 0;
+#X connect 9 0 8 0;
+#X connect 10 0 11 0;
+#X connect 10 1 13 0;
+#X connect 11 0 12 0;
+#X connect 11 0 5 1;
+#X connect 11 0 6 1;
+#X connect 13 0 12 0;
+#X restore 71 210 pd upsample~;
+#X obj 285 161 image Akuf-een_170x97.ppm;
+#X obj 260 180 tgl 50 0 empty empty empty 17 7 0 10 -1 -66577 -1 0
+1;
+#X obj 255 88 knob 16 16 0.001 1 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 749 1;
+#X obj 299 87 knob 16 16 0.01 1 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 742 1;
+#X obj 277 104 knob 16 16 0.01 1 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 742 1;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 3 0 4 2;
+#X connect 4 0 17 0;
+#X connect 5 0 4 1;
+#X connect 6 0 14 0;
+#X connect 8 0 22 0;
+#X connect 10 0 18 0;
+#X connect 11 0 12 0;
+#X connect 12 0 5 0;
+#X connect 13 0 7 0;
+#X connect 14 0 16 0;
+#X connect 15 0 23 0;
+#X connect 16 0 10 0;
+#X connect 16 0 4 0;
+#X connect 17 0 13 0;
+#X connect 18 0 19 0;
+#X connect 19 0 15 0;
+#X connect 22 0 26 0;
+#X connect 22 1 28 0;
+#X connect 22 2 27 0;
+#X connect 22 3 25 0;
+#X connect 23 0 11 0;
+#X connect 25 0 23 1;
+#X connect 25 0 4 2;
+#X connect 26 0 11 1;
+#X connect 27 0 18 1;
+#X connect 28 0 5 1;
+#X coords 0 -1 1 1 99 172 1 235 75;

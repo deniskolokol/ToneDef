@@ -1,0 +1,14 @@
+A humble try to implement Boss DS-1 distorsion and Ibanez Tubescreamer overdrive pedals following the excellent article "Simplified, physically-informed models of distortion and overdrive guitar effects pedals" by D.T. Yeh and al. (https://ccrma.stanford.edu/~dtyeh/papers/yeh07_dafx_distortion.pdf).
+
+DistOdrive.pd : lets you immediately try the two pedal simulations.
+(lp10_cheb~ is part of iemlib, tested on Pd-extended 0.42.5)
+
+There is a DS-1_tone_stage~-help.pd file, open it.
+
+Guitar sample by Dag-z : http://www.cirquenrzique.fr/dag-z 
+
+Development discussions at http://puredata.hurleur.com/sujet-5775-better-sounding-guitar-distortion-beyond-clip-tanh
+
+Thank you again!
+
+Nau
